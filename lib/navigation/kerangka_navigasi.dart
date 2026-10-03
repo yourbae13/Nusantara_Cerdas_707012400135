@@ -4,6 +4,7 @@ import '../pages/beranda_page.dart';
 import '../pages/layanan_page.dart';
 import '../pages/warga_page.dart';
 import 'app_routes.dart';
+import '../models/ikon_warga_badge.dart';
 
 class KerangkaNavigasi extends StatefulWidget {
   const KerangkaNavigasi({super.key});
@@ -75,8 +76,8 @@ class _KerangkaNavigasiState extends State<KerangkaNavigasi> {
           label: Text('Layanan'),
         ),
         NavigationDrawerDestination(
-          icon: Icon(Icons.person_outline),
-          selectedIcon: Icon(Icons.person),
+          icon: IkonWargaBadge(ikon: Icons.person_outline),
+          selectedIcon: IkonWargaBadge(ikon: Icons.person),
           label: Text('Warga'),
         ),
         Padding(padding: EdgeInsets.fromLTRB(28, 8, 28, 8), child: Divider()),
@@ -130,8 +131,8 @@ class _KerangkaNavigasiState extends State<KerangkaNavigasi> {
                             label: Text('Layanan'),
                           ),
                           NavigationRailDestination(
-                            icon: Icon(Icons.person_outline),
-                            selectedIcon: Icon(Icons.person),
+                            icon: IkonWargaBadge(ikon: Icons.person_outline),
+                            selectedIcon: IkonWargaBadge(ikon: Icons.person),
                             label: Text('Warga'),
                           ),
                         ],
@@ -158,8 +159,8 @@ class _KerangkaNavigasiState extends State<KerangkaNavigasi> {
                         label: 'Layanan',
                       ),
                       NavigationDestination(
-                        icon: Icon(Icons.person_outline),
-                        selectedIcon: Icon(Icons.person),
+                        icon: IkonWargaBadge(ikon: Icons.person_outline),
+                        selectedIcon: IkonWargaBadge(ikon: Icons.person),
                         label: 'Warga',
                       ),
                     ],

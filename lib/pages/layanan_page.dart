@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/favorit_model.dart';
 import '../navigation/app_routes.dart';
 import 'layanan_data.dart';
 
@@ -37,7 +39,42 @@ class LayananPage extends StatelessWidget {
                           leading: const Icon(Icons.description_outlined),
                           title: Text(l.nama),
                           subtitle: Text(l.dinas),
-                          trailing: const Icon(Icons.chevron_right),
+                          trailing: Builder(
+                            builder: (ctx) {
+                              // watch: warna bintang mengikuti status favorit.
+                              final bool favorit = ctx
+                                  .watch<FavoritModel>()
+                                  .apakahFavorit(l.nama);
+
+                              return Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    tooltip: favorit
+                                        ? 'Batalkan favorit'
+                                        : 'Tandai favorit',
+                                    icon: Icon(
+                                      favorit ? Icons.star : Icons.star_border,
+                                      color: favorit
+                                          ? Colors.amber.shade700
+                                          : null,
+                                    ),
+                                    onPressed: () {
+                                      // read: hanya memanggil aksi, tanpa
+                                      // berlangganan perubahan.
+                                      final model = ctx.read<FavoritModel>();
+                                      if (favorit) {
+                                        model.batalTandai(l.nama);
+                                      } else {
+                                        model.tandai(l.nama);
+                                      }
+                                    },
+                                  ),
+                                  const Icon(Icons.chevron_right),
+                                ],
+                              );
+                            },
+                          ),
                           onTap: () => _buka(context, l),
                         ),
                     ],
